@@ -1,0 +1,16 @@
+{
+  "name": "eliza",
+  "version": "1.0.0",
+  "description": "Bot Discord de veille informatique",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.26.2",
+    "dotenv": "^16.5.0",
+    "rss-parser": "^3.13.0"
+  }
+}
