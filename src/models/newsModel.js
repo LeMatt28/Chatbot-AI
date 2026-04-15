@@ -1,13 +1,16 @@
-export function createNewsModel(data = {}) {
+// item       = donnee brute renvoyee par rss-parser
+// sourceName = nom du flux (ex: "TechCrunch")
+// category   = categorie du flux (ex: "ia", "cyber")
+export function createArticle(item, sourceName, category) {
   return {
-    title: data.title || "",
-    category: data.category || "autre",
-    date: data.date || null,
-    source: data.source || "",
-    link: data.link || "",
-    summary: data.summary || "",
-    importanceReason: data.importanceReason || "",
-    content: data.content || "",
-    score: data.score || 0
+    title:       item.title?.trim() ?? "Sans titre", 
+    link:        item.link ?? item.guid ?? "",         
+    summary:     item.contentSnippet?.trim() ?? item.content?.trim() ?? "",
+    source:      sourceName,
+    category,
+    publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
+    aiSummary:   null, 
+    aiExplain:   null, 
+    trusted:     false,
   };
 }

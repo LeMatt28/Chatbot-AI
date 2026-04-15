@@ -1,66 +1,22 @@
-export function scoreNews(news) {
-  let score = 0;
+// Calcule un score de pertinence entre 0 et 10 pour un article
+// Plus le score est eleve, plus l'article sera mis en avant
+export function scoreArticle(article) {
+  let score = 5; 
 
-  const text = `${news.title} ${news.content}`.toLowerCase();
+  if (article.trusted) score += 2;
 
-  // récence
-  score += 20;
+  const ageHours = (Date.now() - article.publishedAt.getTime()) / 3_600_000;
 
-  // source fiable
-  score += 20;
+  if (ageHours < 1)       score += 2; 
+  else if (ageHours < 6)  score += 1; 
+  else if (ageHours > 20) score -= 1;
 
-  // impact / gravité
-  const impactKeywords = [
-    "major",
-    "launch",
-    "breach",
-    "security",
-    "critical",
-    "funding",
-    "acquisition",
-    "release",
-    "zero-day",
-    "attack",
-    "vulnerability",
-    "ban",
-    "regulation"
-  ];
+  if (article.summary?.length > 100) score += 1;
 
-  for (const keyword of impactKeywords) {
-    if (text.includes(keyword)) {
-      score += 5;
-    }
-  }
+  if (article.title.length < 20) score -= 1;
 
-  // importance stratégique
-  const strategicKeywords = [
-    "openai",
-    "google",
-    "microsoft",
-    "apple",
-    "meta",
-    "nvidia",
-    "bitcoin",
-    "ethereum",
-    "linux",
-    "cloud"
-  ];
-
-  for (const keyword of strategicKeywords) {
-    if (text.includes(keyword)) {
-      score += 4;
-    }
-  }
-
-  // clarté
-  if (news.content.length > 120) {
-    score += 10;
-  }
-
-  // bonus catégorie utile
-  if (["ia", "cyber", "crypto", "tech"].includes(news.category)) {
-    score += 10;
-  }
-
-  return Math.min(score, 100);
+  return Math.max(0, Math.min(10, score));
+}
+export function rankArticles(articles) {
+  return [...articles].sort((a, b) => b.score - a.score);
 }
