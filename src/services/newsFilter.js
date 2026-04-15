@@ -1,32 +1,22 @@
-import { TRUSTED_SOURCES } from "../config/trustedSources.js";
-import { isRecent } from "../utils/date.js";
-import { containsEnoughInfo } from "../utils/text.js";
+import trustedSources from "../config/trustedSources.js";
+import { isRecent }   from "../utils/date.js";
 
-export function validateNews(news) {
-  const reasons = [];
+export function filterArticles(articles, maxHours = 24) {
+  const seen = new Set();
+  return articles
+    .filter((a) => isRecent(a.publishedAt, maxHours))
+    .filter((a) => {
+      const key = a.title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 60);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((a) => ({ ...a, trusted: isTrusted(a.link) }));
+}
 
-  if (!news.title || news.title.trim().length < 12) {
-    reasons.push("Titre trop faible");
-  }
-
-  if (!news.link) {
-    reasons.push("Lien manquant");
-  }
-
-  if (!news.source || !TRUSTED_SOURCES.includes(news.source)) {
-    reasons.push("Source non fiable ou inconnue");
-  }
-
-  if (!news.date || !isRecent(news.date, 72)) {
-    reasons.push("News trop ancienne ou date absente");
-  }
-
-  if (!containsEnoughInfo(news.content, 80)) {
-    reasons.push("Contenu trop pauvre");
-  }
-
-  return {
-    valid: reasons.length === 0,
-    reasons
-  };
+function isTrusted(url) {
+  try {
+    const hostname = new URL(url).hostname.replace(/^www\./, "");
+    return trustedSources.some((s) => hostname.endsWith(s));
+  } catch { return false; }
 }
