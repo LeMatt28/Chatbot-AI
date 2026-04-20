@@ -1,11 +1,10 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits, Collection, REST, Routes } from "discord.js";
 
-import * as actu from "./commands/actu.js";
-import * as resume from "./commands/resume.js";
-import * as top from "./commands/top.js";
-import * as detail from "./commands/detail.js";
-import * as explique from "./commands/explique.js";
+import * as actu from "./src/commands/actu.js";
+import * as ask from "./src/commands/ask.js";
+import * as top from "./src/commands/top.js";
+import * as plan from "./src/commands/plan.js";
 
 
 // client discord
@@ -19,7 +18,7 @@ client.commands = new Collection();
 
 
 // liste commandes
-const commands = [actu, resume, top, detail, explique];
+const commands = [actu, ask, top, plan];
 
 
 // ajout commandes
@@ -78,12 +77,12 @@ client.on("interactionCreate", async (interaction) => {
     console.log("command error", interaction.commandName, err.message);
 
     if (interaction.deferred || interaction.replied) {
-      await interaction.editReply("une erreur est survenue").catch(() => {});
+      await interaction.editReply("une erreur est survenue").catch(() => { });
     } else {
       await interaction.reply({
         content: "une erreur est survenue",
         ephemeral: true
-      }).catch(() => {});
+      }).catch(() => { });
     }
   }
 });

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat-Actu Landing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+function BotLandingPage() {
+  const features = [
+    {
+      title: "Actu priorisee",
+      text: "Les commandes /actu et /top pour lire vite l'essentiel.",
+    },
+    {
+      title: "Chat IT",
+      text: "La commande /chat pour poser des questions sur l'actualite tech.",
+    },
+    {
+      title: "Plans & quotas",
+      text: "La commande /plan pour voir ou changer l'abonnement.",
+    },
+  ];
+
+  const steps = [
+    "Clique sur \"Ajouter à Discord\".",
+    "Choisis ton serveur et autorise le bot.",
+    "Vérifie les commandes /actu, /top, /chat, /plan.",
+    "Lance /actu pour recevoir les premières news.",
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#0b1020] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(88,101,242,0.16),transparent_35%),radial-gradient(circle_at_bottom,rgba(124,58,237,0.12),transparent_30%)] pointer-events-none" />
+
+      <header className="relative z-10 border-b border-white/10 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#5865F2] font-bold shadow-lg shadow-[#5865F2]/30">
+              AI
+            </div>
+            <div>
+              <p className="text-sm text-white/60">Discord Bot</p>
+              <h1 className="text-lg font-semibold">Chat-Actu</h1>
+            </div>
+          </div>
+
+          <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
+            <a href="#features" className="transition hover:text-white">Fonctionnalités</a>
+            <a href="#install" className="transition hover:text-white">Installation</a>
+            <a href="#faq" className="transition hover:text-white">FAQ</a>
+          </nav>
+        </div>
+      </header>
+
+      <main className="relative z-10">
+        <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center md:py-28">
+          <div>
+            <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/60">
+              Bot Discord • Actus IT • IA
+            </span>
+
+            <h2 className="mt-6 max-w-xl text-4xl font-semibold leading-tight md:text-6xl">
+              La veille IT utile, directement dans Discord.
+            </h2>
+
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/70 md:text-lg">
+              Flux RSS qualifies, resumes IA via Ollama, et commandes slash simples pour agir vite.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#install"
+                className="inline-flex items-center justify-center rounded-2xl bg-[#5865F2] px-6 py-3 font-medium text-white transition hover:scale-[1.02] hover:bg-[#6b76f7]"
+              >
+                Ajouter à Discord
+              </a>
+              <a
+                href="#features"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white/90 transition hover:bg-white/10"
+              >
+                Voir le projet
+              </a>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/55">
+              <span>/actu</span>
+              <span>/top</span>
+              <span>/chat</span>
+              <span>/plan</span>
+            </div>
+          </div>
+
+          <div className="rounded-[32px] border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/30 backdrop-blur">
+            <div className="rounded-[24px] border border-white/10 bg-[#11172b] p-5">
+              <div className="mb-4 flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-white/20" />
+                <div className="h-3 w-3 rounded-full bg-white/20" />
+                <div className="h-3 w-3 rounded-full bg-white/20" />
+              </div>
+
+              <div className="space-y-4">
+                <div className="rounded-2xl bg-[#5865F2]/15 p-4 text-sm text-white/85">
+                  <p className="font-medium">/actu categorie:ia nombre:3</p>
+                  <p className="mt-2 text-white/65">
+                    Articles tries, resumes, liens sources et categories.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white/5 p-4 text-sm text-white/85">
+                  <p className="font-medium">/chat message:"Explique cette actu"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-6 py-8 md:py-14">
+          <div className="mb-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-white/45">Objectif</p>
+              <h3 className="mt-3 text-2xl font-semibold">Simplifier la veille IT sur Discord.</h3>
+              <p className="mt-3 leading-7 text-white/70">
+                Le chatbot centralise les actualités tech et répond aux questions sur les news importantes.
+              </p>
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-white/45">Audience cible</p>
+              <h3 className="mt-3 text-2xl font-semibold">Communautés tech, écoles, entreprises.</h3>
+              <p className="mt-3 leading-7 text-white/70">
+                Idéal pour serveurs Discord qui veulent suivre l’actualité IA, cyber, cloud et innovation.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="mx-auto max-w-6xl px-6 py-8 md:py-14">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.2em] text-white/45">Fonctionnalités</p>
+            <h3 className="mt-3 text-3xl font-semibold">Cas d’usage principaux.</h3>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.07]"
+              >
+                <h4 className="text-xl font-semibold">{feature.title}</h4>
+                <p className="mt-3 leading-7 text-white/70">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="rounded-[32px] border border-white/10 bg-white/5 p-8 mb-10">
+            <p className="text-sm uppercase tracking-[0.2em] text-white/45">Démo</p>
+            <h3 className="mt-3 text-3xl font-semibold">Voir le bot en action.</h3>
+            <p className="mt-4 text-white/70">Ajoute ici une vidéo de démonstration ou 3 captures d’écran du bot sur Discord.</p>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              <div className="aspect-video rounded-2xl border border-white/10 bg-[#11172b] flex items-center justify-center text-white/40 text-sm">
+                Capture / Vidéo 1
+              </div>
+              <div className="aspect-video rounded-2xl border border-white/10 bg-[#11172b] flex items-center justify-center text-white/40 text-sm">
+                Capture / Vidéo 2
+              </div>
+              <div className="aspect-video rounded-2xl border border-white/10 bg-[#11172b] flex items-center justify-center text-white/40 text-sm">
+                Capture / Vidéo 3
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="install" className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-[32px] border border-white/10 bg-white/5 p-8">
+              <p className="text-sm uppercase tracking-[0.2em] text-white/45">Téléchargement / Installation</p>
+              <h3 className="mt-3 text-3xl font-semibold">Installer le bot.</h3>
+              <p className="mt-4 max-w-2xl leading-7 text-white/70">
+                Le bot s'ajoute a Discord via un lien d'invitation, puis les commandes sont disponibles immediatement.
+              </p>
+
+              <div className="mt-8 space-y-4">
+                {steps.map((step, index) => (
+                  <div key={step} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/10 p-4">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#5865F2] text-sm font-semibold">
+                      {index + 1}
+                    </div>
+                    <p className="pt-1 text-white/80">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[32px] border border-white/10 bg-[#11172b] p-8">
+              <h4 className="text-2xl font-semibold">Liens utiles</h4>
+              <div className="mt-6 space-y-4">
+                <a
+                  href="https://discord.com/oauth2/authorize?client_id=1491350538854469732&scope=bot%20applications.commands&permissions=0"
+                  className="block rounded-2xl bg-[#5865F2] px-5 py-4 font-medium transition hover:bg-[#6b76f7]"
+                >
+                  Ajouter le bot à Discord
+                </a>
+                <a
+                  href="./readme.md"
+                  className="block rounded-2xl border border-white/10 bg-white/5 px-5 py-4 font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  Ouvrir la documentation
+                </a>
+                <a
+                  href="https://discord.gg/jEfZcNfv"
+                  className="block rounded-2xl border border-white/10 bg-white/5 px-5 py-4 font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  Rejoindre le serveur support
+                </a>
+              </div>
+
+              <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/65">
+                Liens configures avec les valeurs reelles du projet.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="mx-auto max-w-6xl px-6 pb-20 pt-6">
+          <div className="rounded-[32px] border border-white/10 bg-white/5 p-8">
+            <p className="text-sm uppercase tracking-[0.2em] text-white/45">FAQ</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              <div>
+                <h4 className="text-lg font-semibold">Gratuit ?</h4>
+                <p className="mt-3 text-white/70">Oui, avec un plan de base et des quotas.</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold">Installation ?</h4>
+                <p className="mt-3 text-white/70">Ajout direct via invitation Discord, puis /actu pour commencer.</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold">Commandes ?</h4>
+                <p className="mt-3 text-white/70">/actu, /top, /chat, /plan.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="relative z-10 border-t border-white/10 px-6 py-6 text-center text-sm text-white/45">
+        © 2026 Chat-Actu — Bot Discord de veille technologique.
+      </footer>
+    </div>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<BotLandingPage />);
+  </script>
+</body>
+</html>
